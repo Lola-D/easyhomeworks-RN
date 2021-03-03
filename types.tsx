@@ -22,14 +22,21 @@ export type Task = {
   url?: string;
 };
 
-export type Classroom = {
-  _id: string;
-  classname: string;
-};
+export type Role = {
+  _id?: string;
+  role_name: string;
+}
 
-export type TaskAssignation = {
+export type Speciality = {
+  _id?: string;
+  speciality_name: string;
+}
+
+export type User = {
   _id: string;
-  task: Task;
-  end_date: Date;
-  affectedTo: Classroom;
-};
+  firstname: string;
+  lastname: string;
+  email: string;
+  role: Role;
+  speciality: Speciality;
+}

@@ -1,25 +1,13 @@
 import * as React from 'react';
-import { SafeAreaView, FlatList, StyleSheet, StatusBar } from 'react-native';
-import { useQuery, useMutation } from "@apollo/client";
-
-import EditScreenInfo from '../components/EditScreenInfo';
+import { SafeAreaView, FlatList, StyleSheet } from 'react-native';
+import { useQuery } from "@apollo/client";
 import { Text, View } from '../components/Themed';
 
 import { ALL_TASKS } from '../queries';
 import { Task } from '../types';
 
-// const TaskItem = ({ taskname }: Task): JSX.Element => (
-//   <View style={styles.task}>
-//     <Text style={styles.title}>{taskname}</Text>
-//   </View>
-// );
-
 const TasksScreen = (): JSX.Element => {
   const { loading, error, data } = useQuery(ALL_TASKS);
-
-  // const renderItem = ({ item }: { item: Task }) => (
-  //   <TaskItem taskname={item.taskname}></TaskItem>
-  // );
 
   if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error</Text>;
