@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SafeAreaView, FlatList, StyleSheet } from 'react-native';
 import { useQuery } from "@apollo/client";
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import { Text, View } from '../components/Themed';
 
