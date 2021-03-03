@@ -9,24 +9,14 @@ import { Text, View } from '../components/Themed';
 import { USER } from '../queries';
 import { User } from '../types';
 
-const DATA = {
-  user: {
-    _id: "5ff307772a325013a4389fa2",
-    firstname: "Jérémy",
-    lastname: "Wild",
-    email: "j.wild@email.com",
-    role: {
-      role_name: "Student"
-    },
-    speciality: {
-      speciality_name: "ReactJS"
-    }
-  }
-}
-
 const ProfileScreen = () => {
-  // const { loading, error, data } = useQuery(USER);
-  const { firstname, lastname, email, role, speciality } = DATA.user
+  const { loading, error, data } = useQuery(USER);
+
+  if (loading) return <Text>Loading...</Text>;
+  if (error) return <Text>Error</Text>;
+  
+  const { firstname, lastname, email, role, speciality } = data.user
+  
   return (
     <View style={styles.container}>
       <View style={styles.header} />
@@ -34,14 +24,15 @@ const ProfileScreen = () => {
       <View style={styles.body}>
         <View style={styles.bodyContent}>
           <Text style={styles.name}>{firstname} {lastname}</Text>
-          <Text style={styles.info}>{role.role_name}</Text>
+          <Text style={styles.description}>{email}</Text>
+          <Text style={styles.description}>{role.role_name}</Text>
           <Text style={styles.description}>{speciality.speciality_name}</Text>
           
           <TouchableOpacity style={styles.buttonContainer}>
-            <Text>Assignements</Text>  
+            <Text style={styles.buttonText}>Assignements</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonContainer}>
-            <Text>Submitted assignements</Text> 
+            <Text style={styles.buttonText}>Submitted assignements</Text> 
           </TouchableOpacity>
         </View>
       </View>
@@ -56,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header:{
-    backgroundColor: "#00BFFF",
+    backgroundColor: "#609890",
     alignItems: 'center',
     height:hp('50%'),
     width: wp('100%'),
@@ -72,7 +63,7 @@ const styles = StyleSheet.create({
   },
   name:{
     fontSize:22,
-    color:"#00BFFF",
+    color:"#EC982F",
     fontWeight:'600',
   },
   body:{
@@ -83,9 +74,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding:30,
   },
+  buttonText: {
+    color: "#fafafa",
+  },
   info:{
     fontSize:16,
-    color: "#00BFFF",
+    color: "#EC982F",
     marginTop:10
   },
   description:{
@@ -103,7 +97,7 @@ const styles = StyleSheet.create({
     marginBottom:20,
     width:250,
     borderRadius:30,
-    backgroundColor: "#00BFFF",
+    backgroundColor: "#EC982F",
   },
 });
 
