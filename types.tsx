@@ -1,3 +1,5 @@
+import { StackNavigationProp } from '@react-navigation/stack';
+
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
@@ -14,6 +16,15 @@ export type ProfileParamList = {
 
 export type TasksParamList = {
   TasksScreen: undefined;
+};
+
+type ProfileScreenNavigationProp = StackNavigationProp<
+  BottomTabParamList,
+  'Profile'
+>;
+
+export type Props = {
+  navigation: ProfileScreenNavigationProp;
 };
 
 export type Task = {

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { SafeAreaView, FlatList, StyleSheet } from 'react-native';
 import { useQuery } from "@apollo/client";
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+
 import { Text, View } from '../components/Themed';
 
 import { ALL_TASKS } from '../queries';
@@ -36,17 +38,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+    color: '#fafafa'
   },
   task: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: '#EC982F',
+    borderRadius: 50,
     padding: 20,
     marginVertical: 8,
-    marginHorizontal: 16,
+    width: wp('90%'),
   }
 });
 

@@ -1,22 +1,21 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 import { USER } from '../queries';
-import { User } from '../types';
+import { Props } from '../types';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }: Props) => {
   const { loading, error, data } = useQuery(USER);
 
   if (loading) return <Text>Loading...</Text>;
   if (error) return <Text>Error</Text>;
-  
+
   const { firstname, lastname, email, role, speciality } = data.user
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.header} />
@@ -27,13 +26,14 @@ const ProfileScreen = () => {
           <Text style={styles.description}>{email}</Text>
           <Text style={styles.description}>{role.role_name}</Text>
           <Text style={styles.description}>{speciality.speciality_name}</Text>
-          
-          <TouchableOpacity style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>Assignements</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>Submitted assignements</Text> 
-          </TouchableOpacity>
+          <View style={styles.assignement}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Tasks')}>
+              <Text style={styles.buttonText}>Assignements</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={styles.buttonText}>Submitted assignements</Text> 
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -76,6 +76,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fafafa",
+  },
+  assignement: {
+    marginTop:30,
   },
   info:{
     fontSize:16,
