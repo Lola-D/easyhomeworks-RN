@@ -11,3 +11,8 @@ web-build/
 
 # macOS
 .DS_Store
+
+.server/node_modules
+.server/built
+.server/package-lock.json
+.server/.env
